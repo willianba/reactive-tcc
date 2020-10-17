@@ -1,0 +1,9 @@
+[submodule "loader"]
+	path = loader
+	url = https://github.com/willianba/reactive-loader
+[submodule "translator"]
+	path = translator
+	url = https://github.com/willianba/reactive-translator
+[submodule "extractor"]
+	path = extractor
+	url = https://github.com/willianba/reactive-extractor

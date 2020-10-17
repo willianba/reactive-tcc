@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  extractor:
+    build: extractor/.
+    env_file: extractor/.env
+    container_name: reactive-extractor
+    depends_on:
+    - rabbitmq
+    ports:
+    - '8080:8080'
+
+  translator:
+    build: translator/.
+    env_file: translator/.env
+    container_name: reactive-translator
+    depends_on:
+    - rabbitmq
+    ports:
+    - '8081:8081'
+
+  loader:
+    build: loader/.
+    env_file: loader/.env
+    container_name: reactive-loader
+    depends_on:
+    - rabbitmq
+    ports:
+    - '8082:8082'
+
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+    - 5672:5672
+    - 15672:15672
