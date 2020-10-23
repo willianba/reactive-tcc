@@ -1,28 +1,31 @@
-version: '3.8'
+version: '3'
 
 services:
-  extractor:
+  reactive-extractor:
     build: extractor/.
     env_file: extractor/.env
     container_name: reactive-extractor
+    image: localhost:32000/reactive-extractor:latest
     depends_on:
     - rabbitmq
     ports:
     - '8080:8080'
 
-  translator:
+  reactive-translator:
     build: translator/.
     env_file: translator/.env
     container_name: reactive-translator
+    image: localhost:32000/reactive-translator:latest
     depends_on:
     - rabbitmq
     ports:
     - '8081:8081'
 
-  loader:
+  reactive-loader:
     build: loader/.
     env_file: loader/.env
     container_name: reactive-loader
+    image: localhost:32000/reactive-loader:latest
     depends_on:
     - rabbitmq
     ports:
